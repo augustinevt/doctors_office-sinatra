@@ -21,3 +21,9 @@ post ('/doctor/create') do
   new_doctor.save()
   redirect '/'
 end
+
+get ('/doctor/:id') do
+  @doctor = Doctor.find(params[:id])
+  @patients = Patient.patient_list(@doctor.id())
+  erb(:doctor)
+end

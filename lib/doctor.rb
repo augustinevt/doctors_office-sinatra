@@ -21,6 +21,11 @@ class Doctor
     @id = result.first['id'].to_i
   end
 
+  def self.find(id)
+    result = DB.exec("SELECT * FROM doctors WHERE id = #{id}").first()
+    doctor = Doctor.new({name: result['name'], specialty: result['specialty'], id: result['id'].to_i})
+  end
+
   def ==(other_doctor)
     self.name() == other_doctor.name() && self.id() == other_doctor.id()
   end

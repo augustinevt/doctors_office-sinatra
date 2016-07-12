@@ -21,3 +21,15 @@ describe 'doctor_new route', {type: :feature} do
     expect(page).to have_content("Angur")
   end
 end
+
+describe 'doctor/:id route', {type: :feature} do
+  it 'doctor page should display patients' do
+    new_doctor = Doctor.new({name: 'Doug', specialty: 'Orthopedics'})
+    new_doctor.save()
+    new_patient = Patient.new({name: "Alice", birthday: "12/12/12", doctor_id: new_doctor.id()})
+    new_patient.save()
+    visit('/')
+    click_link('Doug')
+    expect(page).to have_content("Alice")
+  end
+end
