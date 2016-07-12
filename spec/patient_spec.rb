@@ -27,4 +27,12 @@ describe 'Patient' do
       expect(Patient.patient_list(1)).to eq([new_patient,new_patient2])
     end
   end
+
+  describe '#find' do
+    it 'should find patient form database with id' do
+      new_patient = Patient.new({name: 'Doug', birthday: '05/21/1981', doctor_id: 1})
+      new_patient.save()
+      expect(Patient.find(new_patient.id)).to(eq(new_patient))
+    end
+  end
 end

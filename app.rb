@@ -40,3 +40,15 @@ post ('/patient/create') do
   new_patient.save()
   redirect "/doctor/#{params[:doctor_id]}"
 end
+
+get('/change_doctor') do
+  @patient = Patient.find(params[:patient_id])
+  erb(:add_doctor)
+end
+
+post('/change_doctor') do
+  patient = Patient.find(params[:patient_id].to_i)
+  patient.add_doctor(params[:doctor_id])
+  patient.save()
+  redirect "/doctor/#{params[:doctor_id]}"
+end

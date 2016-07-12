@@ -1,10 +1,12 @@
 <h2><%= @doctor.name() %></h2>
 <h3><%= @doctor.specialty() %></h3>
+<h3><%= @doctor.id() %></h3>
 
 
 <ul>
   <% @patients.each()do |patient| %>
-      <li><%= patient.name()%> </a> </li>
+      <% id = patient.id %>
+      <li><%= patient.name()%></a></li> <a href="/change_doctor?patient_id=<%= id %> ">Change Doctor</a>
   <% end %>
 
 </ul>
