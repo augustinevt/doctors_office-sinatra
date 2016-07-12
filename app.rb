@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require 'pg'
 require './lib/doctor'
 require './lib/patient'
+require 'pry'
 also_reload 'lib/**/*.rb'
 
 DB = PG.connect({dbname: 'doctors_office'})
@@ -43,12 +44,13 @@ end
 
 get('/change_doctor') do
   @patient = Patient.find(params[:patient_id])
+  @doctors = Doctor.all()
   erb(:add_doctor)
 end
 
 post('/change_doctor') do
   patient = Patient.find(params[:patient_id].to_i)
-  patient.add_doctor(params[:doctor_id])
+  patient.add_doctor(params[:doctor_id].to_i)
   patient.save()
   redirect "/doctor/#{params[:doctor_id]}"
 end

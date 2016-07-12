@@ -60,7 +60,7 @@ describe 'add_doctor route', {type: :feature} do
     visit('/')
     click_link('Doug')
     click_link('Change Doctor')
-    fill_in('doctor_id', with: new_doctor2.id())
+    find('#doctor_id').find(:xpath, 'option[2]').select_option
     click_button('Assign Doctor')
     # save_and_open_page
     expect(page).to have_content("Umbria")

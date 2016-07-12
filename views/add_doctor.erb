@@ -2,6 +2,13 @@
 
 <form class="" action="/change_doctor" method="post">
   <input type="hidden" name="patient_id" value="<%= @patient.id() %>">
-  <input type="text" name="doctor_id" value="">doctor_id
+
+
+  <select id="doctor_id" name="doctor_id">
+    <% @doctors.each do |doctor| %>
+      <option value="<%= doctor.id() %>"> <%= doctor.name() %> </option>
+    <%end%>
+  </select>
+
   <button type="submit" name="button">Assign Doctor</button>
 </form>
