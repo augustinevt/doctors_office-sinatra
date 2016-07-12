@@ -1,0 +1,12 @@
+<h2><%= @doctor.name() %></h2>
+<h3><%= @doctor.specialty() %></h3>
+
+
+<ul>
+  <% @patients.each()do |patient| %>
+      <li><%= patient.name()%> </a> </li>
+  <% end %>
+
+</ul>
+
+<button type="button" name="button"><a href="/patient_new?doctor_id=<%= @id %>">Add a Patient</a></button>
