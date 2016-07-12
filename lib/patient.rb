@@ -24,4 +24,17 @@ class Patient
     self.name() == other_patient.name() && self.doctor_id() == other_patient.doctor_id()
   end
 
+  def add_doctor(doctor_id)
+    @doctor_id = doctor_id
+  end
+
+  def self.patient_list(doctor_id)
+    returned_patients = DB.exec("SELECT * FROM patients WHERE doctor_id = '#{doctor_id}';")
+    patients = []
+    returned_patients.each do |patient|
+        patients.push(Patient.new({name: patient['name'], birthday: patient['birthday'], doctor_id: patient['doctor_id'].to_i}))
+    end
+    patients
+  end
+
 end
